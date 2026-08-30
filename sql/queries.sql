@@ -66,7 +66,19 @@ AND z.Country = 'United States';
 -- Query 3
 -- Examine species with high extinction probability.
 -- ------------------------------------------------------------
-
+SELECT
+    a.AnimalID,
+    a.Name AS Animal_Name,
+    s.Common_Name,
+    e.Protection_Status,
+    e.Extinction_Probability,
+    e.Expected_extinction_Year
+FROM ANIMAL a
+INNER JOIN SPECIES s
+    ON a.Species_ID = s.SpeciesID
+INNER JOIN `ENDANGERMENT STATISTICS` e
+    ON s.SpeciesID = e.Species_ID
+WHERE e.Extinction_Probability > 0.8;
 
 
 -- ------------------------------------------------------------
