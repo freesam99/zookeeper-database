@@ -85,7 +85,23 @@ WHERE e.Extinction_Probability > 0.8;
 -- Query 4
 -- Display animals with species, zoo, and habitat information.
 -- ------------------------------------------------------------
-
+SELECT
+    a.AnimalID,
+    a.Name AS Animal_Name,
+    s.Common_Name AS Species_Name,
+    z.Zoo_Name,
+    z.City,
+    z.Country,
+    h.Type AS Habitat_Type,
+    h.Vegetation,
+    h.Substrate
+FROM ANIMAL a
+INNER JOIN SPECIES s
+    ON a.Species_ID = s.SpeciesID
+INNER JOIN ZOO z
+    ON a.Zoo_ID = z.ZooID
+INNER JOIN HABITAT h
+    ON a.Habitat_ID = h.HabitatID;
 
 
 -- ------------------------------------------------------------
