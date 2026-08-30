@@ -129,3 +129,18 @@ GROUP BY
 -- Count animals by species and gender for species with
 -- high extinction probability.
 -- ------------------------------------------------------------
+SELECT
+    s.Common_Name AS Species_Name,
+    a.Gender,
+    e.Extinction_Probability,
+    COUNT(a.AnimalID) AS Animal_Count
+FROM ANIMAL a
+INNER JOIN SPECIES s
+    ON a.Species_ID = s.SpeciesID
+INNER JOIN `ENDANGERMENT STATISTICS` e
+    ON s.SpeciesID = e.Species_ID
+WHERE e.Extinction_Probability > 0.5
+GROUP BY
+    s.Common_Name,
+    a.Gender,
+    e.Extinction_Probability;
