@@ -109,7 +109,19 @@ INNER JOIN HABITAT h
 -- Calculate average animal weight for Panthera species
 -- by continent.
 -- ------------------------------------------------------------
-
+SELECT
+    z.Continent,
+    s.Common_Name AS Species_Name,
+    COUNT(a.AnimalID) AS Animal_Count
+FROM ANIMAL a
+INNER JOIN SPECIES s
+    ON a.Species_ID = s.SpeciesID
+INNER JOIN ZOO z
+    ON a.Zoo_ID = z.ZooID
+WHERE s.Genus = 'Panthera'
+GROUP BY
+    z.Continent,
+    s.Common_Name;
 
 
 -- ------------------------------------------------------------
